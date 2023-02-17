@@ -1,10 +1,10 @@
 #include <stdio.h>
 /**
- * Main - Print the alphabet.
+ * main - Print the alphabet.
  *
  * Return: 0 (sucess)
  */
-int main(void)
+int main(void) /* Our execution start here*/
 {
 	char alp[26] = "abcdefghijklmnopqrstuvwxyz";
 	int i;
