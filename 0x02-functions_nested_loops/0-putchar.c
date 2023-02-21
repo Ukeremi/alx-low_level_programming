@@ -1,8 +1,10 @@
 #include "main.h"
 /**
- * main - entry point to print _putchar
- * is written by ukpono
- * return 0
+ * Main - Entry point
+ *
+ * Description: 'this program is to print _putchar'
+ *
+ * return: 0 (success)
  */
 
 int main(void) /* this is my main function */
@@ -16,5 +18,5 @@ _putchar('h');
 _putchar('a');
 _putchar('r');
 _putchar('\n');
-return (0);
+return (0); /* this is return value */
 }
