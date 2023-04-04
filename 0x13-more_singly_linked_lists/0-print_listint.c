@@ -9,12 +9,12 @@
 
 size_t print_listint(const listint_t *h)
 {
-	int i;
+	int um;
 
-	for (i = 0; h != NULL; i++)
+	for (um = 0; h != NULL; um++)
 	{
 		printf("%d\n", h->n);
 		h = h->next;
 	}
-	return (i);
+	return (um);
 }
