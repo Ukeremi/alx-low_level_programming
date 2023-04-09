@@ -1,12 +1,12 @@
-#include "main.h"
 #include <stdio.h>
+#include "main.h"
 #include <stdlib.h>
 
-char *create_buffer(char *file);
-void close_file(int fd);
+char *create_buffer(char *file); /*function prototype*/
+void close_file(int fd); /*function prototype*/
 
 /**
- * create_buffer - Allocates 1024 bytes for a buffer.
+ * create_buffer - This allocates 1024 bytes for a buffer.
  * @file: The name of the file buffer is storing chars for.
  *
  * Return: A pointer to the newly-allocated buffer.
@@ -16,7 +16,6 @@ char *create_buffer(char *file)
 	char *buffer;
 
 	buffer = malloc(sizeof(char) * 1024);
-
 	if (buffer == NULL)
 	{
 		dprintf(STDERR_FILENO,
@@ -33,11 +32,11 @@ char *create_buffer(char *file)
  */
 void close_file(int fd)
 {
-	int c;
+	int cl;
 
-	c = close(fd);
+	cl = close(fd);
 
-	if (c == -1)
+	if (cl == -1)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd);
 		exit(100);
@@ -58,7 +57,7 @@ void close_file(int fd)
  */
 int main(int argc, char *argv[])
 {
-	int from, to, r, w;
+	int to, from, rd, wt;
 	char *buffer;
 
 	if (argc != 3)
@@ -69,11 +68,11 @@ int main(int argc, char *argv[])
 
 	buffer = create_buffer(argv[2]);
 	from = open(argv[1], O_RDONLY);
-	r = read(from, buffer, 1024);
+	rd = read(from, buffer, 1024);
 	to = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC, 0664);
 
 	do {
-		if (from == -1 || r == -1)
+		if (from == -1 || rd == -1)
 		{
 			dprintf(STDERR_FILENO,
 				"Error: Can't read from file %s\n", argv[1]);
@@ -81,8 +80,8 @@ int main(int argc, char *argv[])
 			exit(98);
 		}
 
-		w = write(to, buffer, r);
-		if (to == -1 || w == -1)
+		wt = write(to, buffer, rd);
+		if (to == -1 || wt == -1)
 		{
 			dprintf(STDERR_FILENO,
 				"Error: Can't write to %s\n", argv[2]);
@@ -90,10 +89,10 @@ int main(int argc, char *argv[])
 			exit(99);
 		}
 
-		r = read(from, buffer, 1024);
+		rd = read(from, buffer, 1024);
 		to = open(argv[2], O_WRONLY | O_APPEND);
 
-	} while (r > 0);
+	} while (rd > 0);
 
 	free(buffer);
 	close_file(from);
